@@ -1,78 +1,64 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2513
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;}
-{\colortbl;\red255\green255\blue255;\red191\green100\blue38;\red32\green32\blue32;\red153\green168\blue186;
-\red254\green187\blue91;\red117\green114\blue185;\red86\green132\blue173;\red152\green54\blue29;\red88\green118\blue71;
-\red109\green109\blue109;}
-{\*\expandedcolortbl;;\csgenericrgb\c74902\c39216\c14902;\csgenericrgb\c12549\c12549\c12549;\csgenericrgb\c60000\c65882\c72941;
-\csgenericrgb\c99608\c73333\c35686;\csgenericrgb\c45882\c44706\c72549;\csgenericrgb\c33725\c51765\c67843;\csgenericrgb\c59608\c21176\c11373;\csgenericrgb\c34510\c46275\c27843;
-\csgenericrgb\c42745\c42745\c42745;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+import csv
+import time
+from random import randint
 
-\f0\fs26 \cf2 \cb3 import \cf4 numpy \cf2 as \cf4 np\
-\cf2 from \cf4 tkinter \cf2 import \cf4 *\
-\cf2 import \cf4 csv\
-\cf2 import \cf4 time\
-\cf2 from \cf4 random \cf2 import \cf4 randint\
-\
-\
-\cf2 def \cf5 bmi\cf4 ():\
-    weight = \cf6 float\cf4 (field1.get())\
-    height = \cf6 float\cf4 (field2.get()) / \cf7 100\
-    \cf4 calculateBmi = \cf6 round\cf4 (weight / (height ** \cf7 2\cf4 )\cf2 , \cf7 1\cf4 )\
-    btn1.configure(\cf8 text\cf4 =\cf9 "BMI = " \cf4 + \cf6 str\cf4 (calculateBmi))\
-\cf10 # Reading the CSV file\
-\cf2 with \cf6 open\cf4 (\cf9 "data.csv"\cf4 ) \cf2 as \cf4 csvdatabase:\
-    csvread = csv.reader(csvdatabase)\
-    \cf2 for \cf4 row \cf2 in \cf4 csvread:\cf7 0\
-    \cf2 def \cf5 date\cf4 ():\
-        date.append(row[\cf7 0\cf4 ])\
-        bmi.append(row[\cf7 1\cf4 ])\
-\
-root = Tk()\
-\
-root.title(\cf9 "Bader's Fitness app"\cf4 )\
-\
-root.geometry(\cf9 '380x260'\cf4 )\
-\
-txt1 = Label(root\cf2 , \cf8 text\cf4 =\cf9 "Good morning, What is your Weight Today (kg)?"\cf4 )\
-txt1.grid(\cf8 column\cf4 =\cf7 0\cf2 , \cf8 row\cf4 =\cf7 0\cf4 )\
-\
-txt2 = Label(root\cf2 , \cf8 text\cf4 =\cf9 "Good morning, What is your Height Today (cm)?"\cf4 )\
-txt2.grid(\cf8 column\cf4 =\cf7 0\cf2 , \cf8 row\cf4 =\cf7 1\cf4 )\
-\
-field1 = Entry(root\cf2 , \cf8 width\cf4 =\cf7 10\cf4 )\
-field1.grid(\cf8 column\cf4 =\cf7 1\cf2 , \cf8 row\cf4 =\cf7 0\cf4 )\
-\
-field2 = Entry(root\cf2 , \cf8 width\cf4 =\cf7 10\cf4 )\
-field2.grid(\cf8 column\cf4 =\cf7 1\cf2 , \cf8 row\cf4 =\cf7 1\cf4 )\
-\
-btn1 = Button(root\cf2 , \cf8 text\cf4 =\cf9 "Calculate"\cf2 , \cf8 command\cf4 =bmi)\
-btn1.grid(\cf8 column\cf4 =\cf7 1\cf2 , \cf8 row\cf4 =\cf7 3\cf4 )\
-\
-root.mainloop()\
-\
-\cf2 import \cf4 numpy \cf2 as \cf4 np\
-\cf2 import \cf4 matplotlib.pyplot \cf2 as \cf4 plt\
-\
-x = np.array([\cf7 0\cf2 , \cf7 20\cf2 , \cf7 40\cf2 , \cf7 60\cf2 , \cf7 80\cf2 , \cf7 100\cf2 , \cf7 120\cf2 , \cf7 160\cf2 , \cf7 180\cf2 , \cf7 200\cf2 ,\cf7 220\cf4 ])\
-y = np.array([\cf7 0\cf2 , \cf7 20\cf2 , \cf7 40\cf2 , \cf7 60\cf2 , \cf7 80\cf2 , \cf7 100\cf2 , \cf7 120\cf2 , \cf7 160\cf2 , \cf7 180\cf2 , \cf7 200\cf2 ,\cf7 220\cf4 ])\
-\
-plt.title(\cf9 "7 day average"\cf2 , \cf8 loc \cf4 = \cf9 'left'\cf4 )\
-plt.xlabel(\cf9 "Weight"\cf4 )\
-plt.ylabel(\cf9 "Height"\cf4 )\
-\
-\cf10 # The X and Y axis \
-\cf4 plt.plot(x\cf2 , \cf4 y)\
-plt.show()\
-plt.grid()\
-\
-\cf10 # Suggesting Some Workouts as an extra \
-\cf4 tasks =[\cf9 "Plank"\cf2 , \cf9 "Push up"\cf2 , \cf9 "Sit up"\cf2 , \cf9 "Russian twist"\cf4 ]\
-time = [\cf9 "3,4,2,5"\cf4 ]\
-tasknum = \cf7 0\
-\cf2 for \cf4 task \cf2 in \cf4 tasks:\
-    \cf6 print\cf4 (task)\
-    tasknum=+\cf7 1\
-\cf6 quit\cf4 ()\
-}
+
+def bmi():
+    weight = float(field1.get())
+    height = float(field2.get()) / 100
+    calculateBmi = round(weight / (height ** 2), 1)
+    btn1.configure(text="BMI = " + str(calculateBmi))
+# Reading the CSV file
+with open("data.csv") as csvdatabase:
+    csvread = csv.reader(csvdatabase)
+    for row in csvread:0
+    def date():
+        date.append(row[0])
+        bmi.append(row[1])
+
+root = Tk()
+
+root.title("Bader's Fitness app")
+
+root.geometry('380x260')
+
+txt1 = Label(root, text="Good morning, What is your Weight Today (kg)?")
+txt1.grid(column=0, row=0)
+
+txt2 = Label(root, text="Good morning, What is your Height Today (cm)?")
+txt2.grid(column=0, row=1)
+
+field1 = Entry(root, width=10)
+field1.grid(column=1, row=0)
+
+field2 = Entry(root, width=10)
+field2.grid(column=1, row=1)
+
+btn1 = Button(root, text="Calculate", command=bmi)
+btn1.grid(column=1, row=3)
+
+root.mainloop()
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.array([0, 20, 40, 60, 80, 100, 120, 160, 180, 200,220])
+y = np.array([0, 20, 40, 60, 80, 100, 120, 160, 180, 200,220])
+
+plt.title("7 day average", loc = 'left')
+plt.xlabel("Weight")
+plt.ylabel("Height")
+
+# The X and Y axis 
+plt.plot(x, y)
+plt.show()
+plt.grid()
+
+# Suggesting Some Workouts as an extra 
+tasks =["Plank", "Push up", "Sit up", "Russian twist"]
+time = ["3,4,2,5"]
+tasknum = 0
+for task in tasks:
+    print(task)
+    tasknum=+1
+quit()
